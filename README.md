@@ -1,2 +1,4 @@
-# CodeGuardian---AI-Hackathon
-Al-powered VS Code extension that prevents CS students from copy-pasting Al code without understanding - AWS Al for Bharat Hackathon 2026
+Name - Yaduvansh Kumra
+Username - yaduvansh-kumra
+Email Id - yaduvanshkumra76@gmail.com
+LinkedIn - linkedin.com/in/yaduvansh-kumra-9a1248380
