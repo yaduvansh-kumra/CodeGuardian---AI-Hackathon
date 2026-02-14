@@ -1,9 +1,3 @@
-Name - Yaduvansh Kumra
-Username - yaduvansh-kumra
-Email Id - yaduvanshkumra76@gmail.com
-LinkedIn - https://www.linkedin.com/in/yaduvansh-kumra-9a1248380
-
-
 🏅 Hackathon Details
 Event: AWS AI for Bharat Hackathon 2026
 
@@ -97,11 +91,11 @@ CodeGuardian-AI-Hackathon/
     └── presentation.pdf     # Hackathon pitch deck
 ```
 👥 Team Name - The Sentinels
-Yaduvansh Kumra
+
 [member 1]
-[member 2]
-BE Computer Science (AI/ML)
-Chitkara University, Punjab
+[member 2] -
+Member 3 - Yaduvansh Kumra
+
 https://github.com/yaduvansh-kumra
 [member 1 github]
 [member 2 github]
