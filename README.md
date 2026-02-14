@@ -92,13 +92,13 @@ CodeGuardian-AI-Hackathon/
 ```
 👥 Team Name - The Sentinels
 
-[member 1]
-[member 2] -
-Member 3 - Yaduvansh Kumra
+Member 1 - Abhinav Khare       (https://github.com/Cosmicloader)
+Member 2 - Nishtha Taneja     (https://github.com/nishtha-taneja-27)
+Member 3 - Yaduvansh Kumra    (https://github.com/yaduvansh-kumra)
 
-https://github.com/yaduvansh-kumra
-[member 1 github]
-[member 2 github]
+
+
+
 
 Built with ❤️ for India's 1.5M CS students graduating annually.
 
