@@ -25,8 +25,8 @@ Current tools (GitHub Copilot, ChatGPT) enable blind copy-pasting with zero lear
 
 ### How It Works
 
-1. **Detect** – Identifies AI-generated code insertions via pattern analysis.  
-2. **Challenge** – Prompts the student: *"Explain this code in your words"* (text or voice in Hindi/English).  
+1. **Detect** – Identifies AI-generated code insertions via pattern analysis, paste detection, clipboard monitoring, code style analysis.
+2. **Challenge** – Prompts the student: *"Explain this code in your words"* (text or voice in Hindi/English).
 3. **Verify** – AWS Bedrock grades explanation quality (0–100 score).  
 4. **Unlock** – Code executes only if the score is ≥ 70%.  
 5. **Track** – Weekly reports show AI dependency ratio and interview readiness.
@@ -78,6 +78,13 @@ Current tools (GitHub Copilot, ChatGPT) enable blind copy-pasting with zero lear
 - **Inclusive design** (Hindi support for non–English-first learners).  
 
 ---
+
+##🔹 Future Roadmap
+
+-Integration with colleges
+-LMS integration
+-Teacher dashboard
+-Offline mode
 
 ## 📁 Repository Structure
 
