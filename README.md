@@ -1,103 +1,178 @@
-🏅 Hackathon Details
-Event: AWS AI for Bharat Hackathon 2026
+# 🛡️ CodeGuardian  
+## ❌ Stop Blind AI Coding. ✅ Start Real Learning.
 
-Track: Student Track 1 – AI for Learning and Developer Productivity
-
-Submission Date: February 15, 2026
-
-Problem Statement: Build an AI-powered solution that helps people learn faster, work smarter, or become more productive while building or understanding technology.
-
-
-# 🛡️ CodeGuardian: AI Learning Enforcer for Bharat
-
-[![AWS AI for Bharat Hackathon 2026](https://img.shields.io/badge/AWS-AI%20for%20Bharat%202026-orange)]()
-[![Track](https://img.shields.io/badge/Track-Student%20Track%201-blue)]()
-
-## 🎯 Problem Statement
-
-70% of Indian CS students rely on AI-generated code without understanding fundamentals, leading to high technical interview failure rates.
-
-Current tools (GitHub Copilot, ChatGPT) enable blind copy-pasting with zero learning verification, creating a generation of "prompt engineers" who cannot code independently.
-
-## 💡 Our Solution
-
-**CodeGuardian** is a VS Code extension that intercepts AI-generated code and forces students to demonstrate understanding before execution.
-
-### How It Works
-
-1. **Detect** – Identifies AI-generated code insertions via pattern analysis, paste detection, clipboard monitoring, code style analysis.
-2. **Challenge** – Prompts the student: *"Explain this code in your words"* (text or voice in Hindi/English).
-3. **Verify** – AWS Bedrock grades explanation quality (0–100 score).  
-4. **Unlock** – Code executes only if the score is ≥ 70%.  
-5. **Track** – Weekly reports show AI dependency ratio and interview readiness.
+> 🧠 Turning AI from a shortcut into a tutor for India's future developers.
 
 ---
 
-## 🏗️ AWS Architecture
+## 🚨 The Hidden Crisis
 
-![System Architecture](architecture-diagram.png)
+AI coding tools are helping students write code —  
+but silently destroying learning.
 
-### AWS Services Used
+Across Indian engineering colleges:
 
-- **Amazon Bedrock** (Claude 3.5 Sonnet) – Grade explanation quality  
-- **AWS Lambda** – Real-time code analysis and orchestration  
-- **Amazon Transcribe** – Hindi voice input support  
-- **Amazon DynamoDB** – User progress tracking  
-- **AWS Amplify** – Web dashboard hosting  
-- **Amazon Comprehend** – Plagiarism detection  
-- **AWS KMS** – Encryption for sensitive data at rest  
+⚠️ Students copy AI code without understanding  
+⚠️ Problem-solving skills are declining  
+⚠️ Interview performance is dropping  
+⚠️ Tier 2/3 students are falling further behind  
 
----
-
-## 📊 Expected Impact
-
-| Metric                          | Target                      |
-|---------------------------------|-----------------------------|
-| Students Supported              | 100,000 in Phase 1          |
-| AI Dependency Reduction         | 70% → 30% in 30 days        |
-| Interview Pass Rate Improvement | +40%                        |
-| Student Retention               | 80% after 2 weeks           |
-| Cost per Student                | < ₹5/month (AWS Free Tier)  |
+**AI generates answers.  
+It does not verify learning.**
 
 ---
 
-## 🇮🇳 Bharat Focus
+## 💡 Our Solution — CodeGuardian
 
-- **Hindi Voice Support** – Amazon Transcribe enables Tier 2–3 city students to explain in their native language.  
-- **Government Alignment** – Supports India AI Mission's 13,500 scholar upskilling initiative.  
-- **Affordable Pricing** – ₹299/month premium tier (vs ₹5,000+ international tools).  
-- **Cultural Context** – No student shaming; gamified progressive difficulty to build confidence.  
+A VS Code extension that ensures students **understand AI-generated code before using it.**
+
+### 🔁 The Learning Guardrail
+
+```
+Detect → Explain → Verify → Execute
+```
+
+When AI code is detected:
+
+🔒 Execution is locked  
+🗣️ Student explains the code (English/Hindi, text/voice)  
+🤖 AI evaluates understanding  
+🔓 Code unlocks only if comprehension is proven  
 
 ---
 
-## 🏆 Unique Differentiators
+## 🔥 Killer Feature — ELI5 Guided Learning Mode
 
-- **First AWS Bedrock-powered learning guardrail** (not just content delivery).  
-- **Real-time prevention** (not post-assessment like LeetCode).  
-- **Outcome-driven metrics** (interview readiness, not just grades).  
-- **Inclusive design** (Hindi support for non–English-first learners).  
+If students fail repeatedly:
+
+# 👉 The AI switches from judge to teacher
+
+ELI5 Mode explains the concept using:
+
+🧸 Simple language  
+🌍 Real-world analogies  
+🪜 Step-by-step breakdown  
+❓ Practice questions  
+
+Code unlocks only after learning.
+
+### 🎯 AI stops being a shortcut — becomes a mentor.
 
 ---
 
-##🔹 Future Roadmap
+## 🏗️ How It Works
 
--Integration with colleges
--LMS integration
--Teacher dashboard
--Offline mode
+### 🧑‍💻 VS Code Extension
 
-## 📁 Repository Structure
+- AI Code Detector  
+- Explanation Interface  
+- Execution Gate  
+- Progress Tracker  
+
+### ☁️ AWS Backend
+
+- 🧠 Amazon Bedrock — grading & tutoring  
+- ⚡ AWS Lambda — processing  
+- 🎤 Amazon Transcribe — voice input  
+- 🔎 Amazon Comprehend — plagiarism detection  
+- 🗄️ DynamoDB — session storage  
+- 📊 AWS Amplify — dashboard  
+
+---
+
+## 🔄 Student Journey
+
+```
+Paste AI Code
+      ↓
+Explain Code
+      ↓
+Score ≥ 70?
+      │
+   Yes → Execute ✅
+      │
+      No
+      ↓
+Hints + Retry
+      ↓
+🔥 ELI5 Mode → Learn → Execute
+```
+
+---
+
+## 🇮🇳 Why This Matters for Bharat
+
+CodeGuardian addresses a real national challenge:
+
+✔ Supports English + Hindi  
+✔ Helps Tier 1–3 city students  
+✔ Builds interview readiness  
+✔ Promotes responsible AI use  
+✔ Strengthens India’s tech workforce  
+
+---
+
+## 🛠️ Hackathon MVP Scope
+
+We will build:
+
+✅ AI code detection  
+✅ Explanation grading  
+✅ Execution lock/unlock  
+✅ Retry & hints  
+✅ 🔥 ELI5 teaching mode  
+✅ Basic progress dashboard  
+
+Designed for AWS credits + hackathon timeline.
+
+---
+
+## 🌟 What Makes Us Different
+
+| Existing Tools | CodeGuardian |
+|----------------|-------------|
+AI tutors give answers | Ensures understanding first |
+Code assistants boost speed | Protects learning quality |
+Learning apps teach separately | Works inside coding workflow |
+Punishes mistakes | Teaches via ELI5 Mode |
+
+---
+
+## 📈 Expected Impact
+
+🎯 Reduce AI dependency from **70% → 30%**  
+🎯 Improve technical interview success  
+🎯 Promote real skill development  
+🎯 Prepare students for AI-assisted future  
+
+---
+
+## 🚀 Vision
+
+A future where AI enhances learning — not replaces it.
+
+CodeGuardian ensures India's next generation of developers can **use AI responsibly without losing core skills.**
+
+🛠️ Designed for scalable implementation beyond the hackathon prototype.
+
+---
+
+## 📂 Repository Structure
 
 ```
 CodeGuardian-AI-Hackathon/
-
-├── requirements.md          # Functional & non-functional requirements
-├── design.md                # System architecture & AWS design
-├── architecture-diagram.png # AWS components visual
-├── README.md                # This file
-└── docs/
-    └── presentation.pdf     # Hackathon pitch deck
+│
+├── README.md
+├── architecture_diagrams.png
+├── CodeGuardian_Presentation.pdf
+│
+├── docs/
+│   ├── design.md
+│   └── requirements.md
+│
+├── zip file/(to upload the .kiro folder)
 ```
+
 👥 Team Name - The Sentinels
 
 Member 1 - Abhinav Khare
@@ -113,8 +188,4 @@ Member 3 - Yaduvansh Kumra
 (https://www.linkedin.com/in/yaduvansh-kumra-9a1248380/)
 
 
-
-
-
 Built with ❤️ for India's 1.5M CS students graduating annually.
-
