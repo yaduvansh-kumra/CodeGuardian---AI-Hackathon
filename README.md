@@ -1,7 +1,7 @@
 🏅 Hackathon Details
 Event: AWS AI for Bharat Hackathon 2026
 
-Track: Student Track 1 – Learning and Developer Productivity
+Track: Student Track 1 – AI for Learning and Developer Productivity
 
 Submission Date: February 15, 2026
 
@@ -53,11 +53,11 @@ Current tools (GitHub Copilot, ChatGPT) enable blind copy-pasting with zero lear
 
 | Metric                          | Target                      |
 |---------------------------------|-----------------------------|
-| Students Supported              | 100,000 in Phase 1         |
-| AI Dependency Reduction         | 70% → 30% in 30 days       |
+| Students Supported              | 100,000 in Phase 1          |
+| AI Dependency Reduction         | 70% → 30% in 30 days        |
 | Interview Pass Rate Improvement | +40%                        |
-| Student Retention               | 80% after 2 weeks          |
-| Cost per Student                | < ₹5/month (AWS Free Tier) |
+| Student Retention               | 80% after 2 weeks           |
+| Cost per Student                | < ₹5/month (AWS Free Tier)  |
 
 ---
 
@@ -83,6 +83,7 @@ Current tools (GitHub Copilot, ChatGPT) enable blind copy-pasting with zero lear
 
 ```
 CodeGuardian-AI-Hackathon/
+
 ├── requirements.md          # Functional & non-functional requirements
 ├── design.md                # System architecture & AWS design
 ├── architecture-diagram.png # AWS components visual
@@ -92,9 +93,17 @@ CodeGuardian-AI-Hackathon/
 ```
 👥 Team Name - The Sentinels
 
-Member 1 - Abhinav Khare       (https://github.com/Cosmicloader)
-Member 2 - Nishtha Taneja     (https://github.com/nishtha-taneja-27)
-Member 3 - Yaduvansh Kumra    (https://github.com/yaduvansh-kumra)
+Member 1 - Abhinav Khare
+(https://github.com/Cosmicloader)
+()
+
+Member 2 - Nishtha Taneja
+(https://github.com/nishtha-taneja-27)
+(https://www.linkedin.com/in/nishtha-taneja-889721374/)
+
+Member 3 - Yaduvansh Kumra
+(https://github.com/yaduvansh-kumra)
+(https://www.linkedin.com/in/yaduvansh-kumra-9a1248380/)
 
 
 
