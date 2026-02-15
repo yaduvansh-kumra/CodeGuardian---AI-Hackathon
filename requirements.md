@@ -14,6 +14,7 @@ For the AI for Bharat 2026 hackathon, the initial scope focuses on the core lear
 - Explanation grading and scoring via AWS Bedrock (Requirement 3)
 - Code execution control (Requirement 4)
 - Retry mechanism and hint system (Requirement 5)
+- "Explain Like I'm 5" guided learning mode (Requirement 5A) - KILLER FEATURE
 - Basic progress tracking and minimal dashboard (parts of Requirements 6 & 7)
 - Core security and performance requirements (Requirements 8 & 9)
 
@@ -44,6 +45,7 @@ This scoping ensures the hackathon prototype is buildable and testable within AW
 - **Plagiarism_Detector**: Amazon Comprehend-based service identifying copied explanations
 - **Session**: Single interaction cycle from code paste to explanation grading
 - **Retry_Attempt**: Student's subsequent explanation submission after failing to meet Passing_Threshold (max 3 per Session)
+- **ELI5_Mode**: "Explain Like I'm 5" interactive teaching mode that activates when students fail to reach Passing_Threshold, providing simplified concept explanations and guided learning before allowing code execution
 
 ## Requirements
 
@@ -106,10 +108,32 @@ This scoping ensures the hackathon prototype is buildable and testable within AW
 
 1. WHEN the Understanding_Score is below 70%, THE Hint_System SHALL provide progressive hints based on the specific gaps identified
 2. WHEN a student requests a retry, THE CodeGuardian SHALL allow up to 3 Retry_Attempts per Session
-3. WHEN a student exhausts all 3 Retry_Attempts without reaching 70%, THE CodeGuardian SHALL unlock the code but mark the session as "unverified" in metrics
+3. WHEN a student exhausts all 3 Retry_Attempts without reaching 70%, THE CodeGuardian SHALL activate ELI5_Mode instead of immediately unlocking the code
 4. WHEN providing hints, THE Hint_System SHALL reveal increasingly specific guidance with each failed attempt (20% detail, 40% detail, 60% detail)
 5. WHEN a student achieves 70% on a retry, THE CodeGuardian SHALL record the number of attempts taken in the progress metrics
 6. THE Hint_System SHALL adapt hint content based on the programming language (JavaScript, Python, Java)
+
+### Requirement 5A: "Explain Like I'm 5" (ELI5) Guided Learning Mode 🔥
+
+**User Story:** As a student who struggles to understand a concept, I want the AI to teach me interactively in simple terms, so that I can learn the concept before using the code instead of feeling punished.
+
+#### Acceptance Criteria
+
+1. WHEN a student exhausts all 3 Retry_Attempts without reaching 70%, THE CodeGuardian SHALL activate ELI5_Mode and display a supportive message: "Let's learn this together!"
+2. WHEN ELI5_Mode activates, THE CodeGuardian SHALL use AWS Bedrock (Claude 3.5 Sonnet) to break down the code concept into simple, beginner-friendly explanations
+3. WHEN teaching in ELI5_Mode, THE CodeGuardian SHALL provide interactive lessons with:
+   - Simple analogies and real-world examples
+   - Step-by-step concept breakdown
+   - Visual code annotations highlighting key parts
+   - Practice questions to verify understanding
+4. WHEN a student completes the ELI5 lesson, THE CodeGuardian SHALL ask a simple verification question about the concept
+5. WHEN the student answers the verification question correctly, THE CodeGuardian SHALL unlock the code and mark the session as "learned via ELI5"
+6. WHEN the student answers incorrectly, THE CodeGuardian SHALL provide additional explanation and ask a simpler question (max 2 verification attempts)
+7. WHEN a student completes 2 verification attempts in ELI5_Mode, THE CodeGuardian SHALL unlock the code and recommend reviewing the concept later
+8. THE ELI5_Mode SHALL support both English and Hindi with culturally relevant examples for Indian students
+9. THE ELI5_Mode SHALL adapt teaching style based on the student's language preference and previous learning patterns
+10. WHEN displaying ELI5 content, THE CodeGuardian SHALL use encouraging, non-judgmental language to maintain student motivation
+11. THE CodeGuardian SHALL track ELI5_Mode activations and completion rates as part of learning analytics
 
 ### Requirement 6: Progress Tracking and Metrics
 
