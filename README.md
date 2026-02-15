@@ -95,7 +95,7 @@ CodeGuardian-AI-Hackathon/
 
 Member 1 - Abhinav Khare
 (https://github.com/Cosmicloader)
-()
+(www.linkedin.com/in/abhinav-khare-91369726b)
 
 Member 2 - Nishtha Taneja
 (https://github.com/nishtha-taneja-27)
