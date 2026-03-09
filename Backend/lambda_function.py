@@ -1,14 +1,18 @@
 import json
 import boto3
 import time
-import urllib.request
 
-# Keep DynamoDB exactly where it is!
+# 1. DynamoDB Setup
 dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
 table = dynamodb.Table('CodeGuardianSessions')
 
-# PASTE YOUR GEMINI API KEY HERE BEFORE DEPLOYING
-GEMINI_API_KEY = "YOUR_API_KEY_HERE"
+# 2. Bedrock Setup (Keys redacted for public repository security)
+bedrock = boto3.client(
+    service_name='bedrock-runtime',
+    region_name='us-east-1', 
+    aws_access_key_id='YOUR_AWS_ACCESS_KEY_ID', 
+    aws_secret_access_key='YOUR_AWS_SECRET_ACCESS_KEY' 
+)
 
 def lambda_handler(event, context):
     try:
@@ -18,52 +22,47 @@ def lambda_handler(event, context):
         language = body.get('language', 'python')
         is_eli5 = body.get('eli5', False)
         
-        # The Updated ELI5 Prompt Logic
+        # 3. Prompt Logic
         if is_eli5:
-            prompt = f"""Act as an extremely friendly and encouraging coding mentor. Explain this {language} code to a complete beginner. 
-            Rules:
-            1. Use a simple, relatable real-world analogy (like cooking, cars, or building blocks).
-            2. ZERO technical jargon. Do not use words like 'function', 'variable', or 'iterate'.
-            3. Keep the explanation under 3 sentences so they don't get overwhelmed.
-            4. Ask ONE simple, interactive question at the end to check their understanding.
-            
-            Code to explain: {code}
-            
-            Respond ONLY with valid JSON, no markdown formatting: {{"eli5_explanation": "your analogy explanation", "verify_question": "your simple question?"}}"""
+            prompt = f"""Act as a friendly coding mentor. Explain this {language} code to a complete beginner. 
+            Use a simple real-world analogy. Keep it under 3 sentences. No technical jargon. Ask one simple question at the end.
+            Code: {code}
+            Respond ONLY with valid JSON: {{"eli5_explanation": "your analogy", "verify_question": "your question"}}"""
         else:
             prompt = f"""Grade this explanation of {language} code on understanding (0-100 score).
             Code: {code}
             Explanation: {explanation}
-            Output ONLY valid JSON, no markdown formatting: {{"score": 85, "overallcomment": "brief feedback", "issues": ["bullet1", "bullet2"]}}"""
+            Output ONLY valid JSON, no markdown formatting: {{"score": 85, "overallcomment": "brief feedback", "issues": ["issue1"]}}"""
         
-        # Call Google Gemini API directly
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
-        
-        payload = {
-            "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {
-                "temperature": 0.2, # Low temperature for strict JSON output
-                "responseMimeType": "application/json" # Forces Gemini to return clean JSON!
-            }
-        }
-        
-        req = urllib.request.Request(
-            url, 
-            data=json.dumps(payload).encode('utf-8'), 
-            headers={'Content-Type': 'application/json'}
-        )
-        
-        with urllib.request.urlopen(req) as response:
-            result_data = json.loads(response.read().decode('utf-8'))
+        # ==========================================
+        # 4. ENTERPRISE FALLBACK SYSTEM
+        # ==========================================
+        try:
+            # PLAN A: Primary Model (Nova Pro)
+            response = bedrock.converse(
+                modelId='amazon.nova-pro-v1:0',
+                messages=[{"role": "user", "content": [{"text": prompt}]}],
+                inferenceConfig={"temperature": 0.2}
+            )
+            raw_text = response['output']['message']['content'][0]['text']
             
-        # Extract the text from Gemini's response
-        raw_text = result_data['candidates'][0]['content']['parts'][0]['text']
-        
-        # Clean it up just in case
+        except Exception as primary_error:
+            print(f"WARNING: Nova Pro Failed ({str(primary_error)}). Triggering Fallback to Nova Micro...")
+            
+            # PLAN B: Fallback Model (Nova Micro)
+            response = bedrock.converse(
+                modelId='amazon.nova-micro-v1:0', 
+                messages=[{"role": "user", "content": [{"text": prompt}]}],
+                inferenceConfig={"temperature": 0.2}
+            )
+            raw_text = response['output']['message']['content'][0]['text']
+        # ==========================================
+            
+        # Clean up Markdown JSON blocks
         clean_text = raw_text.strip().removeprefix('```json').removeprefix('```').removesuffix('```').strip()
         result = json.loads(clean_text)
         
-        # Store in AWS DynamoDB
+        # 5. Save to DynamoDB
         session_id = context.aws_request_id
         table.put_item(Item={
             'sessionId': session_id,
@@ -80,7 +79,8 @@ def lambda_handler(event, context):
         }
         
     except Exception as e:
+        print(f"CRITICAL ERROR: Both models failed. {str(e)}")
         return {
             'statusCode': 500,
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': "AI processing failed. Please try again."})
         }
