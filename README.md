@@ -80,10 +80,8 @@ If the primary, high-capability model experiences unexpected latency or server e
 
 ---
 
-## 📦 Prototype Assets & Links
+## 📦 Prototype Assets 
 
-* **GitHub Repository:** [Code Guardian Source Code](https://github.com/yaduvansh-kumra/CodeGuardian---Al-Hackathon)
-* **Demo Video:** [Watch the MVP in Action](https://drive.google.com/drive/folders/lojrNcGFhb4a3t9hZV0OZtstvsjZ9sqKD?usp=sharing)
 * **`/extension`**: Contains the TypeScript/Node.js source code for the VS Code client.
 * **`/aws-backend`**: Contains the Python AWS Lambda function and Bedrock configuration.
 * `CodeGuardian.vsix`: The compiled, ready-to-install VS Code extension.
@@ -101,3 +99,4 @@ If the primary, high-capability model experiences unexpected latency or server e
 
  
 *Built by Team The Sentinels for the AWS AI for Bharat Hackathon.*
+
