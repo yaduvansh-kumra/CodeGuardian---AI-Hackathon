@@ -30,7 +30,8 @@ This project is built natively on AWS, prioritizing **High Availability (HA)**, 
 * **Security:** **AWS IAM** enforces strict, programmatic-only access, ensuring the Lambda function has secure, isolated permissions to Bedrock and DynamoDB.
 * **AI Engine:** **Amazon Bedrock** provides the state-of-the-art Generative AI capabilities, utilizing the `bedrock.converse` API for strict JSON adherence.
 
-  graph TD
+```mermaid
+graph TD
     A[VS Code Extension Client] -->|HTTP POST Request| B(Amazon API Gateway)
     B -->|REST Route| C{AWS Lambda Orchestrator}
     
@@ -57,7 +58,7 @@ This project is built natively on AWS, prioritizing **High Availability (HA)**, 
     class B,C aws
     class E,F ai
     class D db
-
+```
 ---
 
 ## 🛡️ Fault-Tolerant "Fallback" System (Highlight)
