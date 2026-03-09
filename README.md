@@ -30,6 +30,34 @@ This project is built natively on AWS, prioritizing **High Availability (HA)**, 
 * **Security:** **AWS IAM** enforces strict, programmatic-only access, ensuring the Lambda function has secure, isolated permissions to Bedrock and DynamoDB.
 * **AI Engine:** **Amazon Bedrock** provides the state-of-the-art Generative AI capabilities, utilizing the `bedrock.converse` API for strict JSON adherence.
 
+  graph TD
+    A[VS Code Extension Client] -->|HTTP POST Request| B(Amazon API Gateway)
+    B -->|REST Route| C{AWS Lambda Orchestrator}
+    
+    %% Database Connection
+    C -->|Write Session Strikes| D[(Amazon DynamoDB)]
+    D -->|Read Strikes| C
+    
+    %% AI Integration with Fallback
+    C -->|Plan A - Semantic Grading| E[Amazon Bedrock - Nova Pro]
+    E -.->|On Timeout or Error Trigger Fallback| F[Amazon Bedrock - Nova Micro]
+    
+    %% Return Path
+    E -->|Clean JSON Response| C
+    F -->|Clean JSON Response| C
+    C -->|Status 200| B
+    B -->|Update Editor UI| A
+
+    classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:white
+    classDef client fill:#007ACC,stroke:#232F3E,stroke-width:2px,color:white
+    classDef ai fill:#00A4A6,stroke:#232F3E,stroke-width:2px,color:white
+    classDef db fill:#3B48CC,stroke:#232F3E,stroke-width:2px,color:white
+
+    class A client
+    class B,C aws
+    class E,F ai
+    class D db
+
 ---
 
 ## 🛡️ Fault-Tolerant "Fallback" System (Highlight)
@@ -69,36 +97,6 @@ If the primary, high-capability model experiences unexpected latency or server e
 * **Contextual Code Optimization:** AI-driven tips on time complexity and library efficiency based on the pasted code.
 
 ---
-## ☁️ Enterprise Cloud Architecture
 
-The Code Guardian backend is built entirely on AWS, prioritizing **High Availability (HA)**, **Least-Privilege Security**, and **Serverless Scalability**.
-
-```mermaid
-graph TD
-    A[VS Code Extension Client] -->|HTTP POST Request| B(Amazon API Gateway)
-    B -->|REST Route| C{AWS Lambda Orchestrator}
-    
-    %% Database Connection
-    C <-->|Read/Write Session Strikes| D[(Amazon DynamoDB)]
-    
-    %% AI Integration with Fallback
-    C -->|Plan A: Semantic Grading| E[Amazon Bedrock: Nova Pro]
-    E -.->|On Timeout/Error Trigger Fallback| F[Amazon Bedrock: Nova Micro]
-    
-    %% Return Path
-    E -->|Clean JSON Response| C
-    F -->|Clean JSON Response| C
-    C -->|Status 200| B
-    B -->|Update Editor UI| A
-
-    classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:white;
-    classDef client fill:#007ACC,stroke:#232F3E,stroke-width:2px,color:white;
-    classDef ai fill:#00A4A6,stroke:#232F3E,stroke-width:2px,color:white;
-    classDef db fill:#3B48CC,stroke:#232F3E,stroke-width:2px,color:white;
-
-    class A client;
-    class B,C aws;
-    class E,F ai;
-    class D db;
  
 *Built by Team The Sentinels for the AWS AI for Bharat Hackathon.*
